@@ -6,7 +6,7 @@ import requestAPI from '../helpers/api'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import *as actions from '../redux/actions'
+import * as actions from '../redux/actions'
 
 const Login = () => {
     const navigate = useNavigate()
@@ -56,12 +56,13 @@ const Login = () => {
         console.log(formData)
         let valid = validate()
         if(valid) {
-            console.log('đăng nhập thành công')
+            console.log('request login apiS')
             dispatch(actions.controloading(true))
             requestAPI('/auth/login', 'POST', formData).then(res => {
                 console.log(res)
                 localStorage.setItem('access_token', res.data.access_token);
                 localStorage.setItem('refresh_token', res.data.refresh_token);
+                toast.success('Đăng nhập thành công!', {position: "top-center"})
                 dispatch(actions.controloading(false))
                 navigate('/')
             }).catch(err => {
@@ -77,6 +78,7 @@ const Login = () => {
             })
         }
         setIsSubmit(true)
+        
     }
 
   return (

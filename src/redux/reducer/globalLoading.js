@@ -7,7 +7,7 @@ const globalLoading = (state = initialState, action) => {
         case 'CONTROL_LOADING':
             
             state= {
-                status: action.payload
+                status: action.status
             }
             return state;      
         default:
